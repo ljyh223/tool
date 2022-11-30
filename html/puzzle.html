@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>生成图片碎片</title>
+    <script src="../js/puzzle.js"></script>
+    <!-- <script src="jquery.min.js"></script> -->
+    <style>
+        body{
+            -webkit-user-select:none;/*谷歌 /Chrome*/
+            -moz-user-select:none; /*火狐/Firefox*/
+            -ms-user-select:none;    /*IE 10+*/
+            user-select:none;
+        }
+        #fragTable {
+            border-collapse: collapse;
+            border-color: green;
+        }
+        input[type=text]{
+            outline: none;
+            width: 50px;
+        }
+        .frist{
+            margin-top: 50px;
+            margin-left: 5%;
+        }
+        #title{
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.5em;
+            color: rgb(26, 195, 198);
+            font-family: 'Comic Sans MS','Open Sans','Microsoft Yahei','Microsoft Yahei',-apple-system,sans-serif;
+        }
+        .action{
+            margin-top: 5px;
+        }
+        .top-l{
+            width: 150px;
+            height: 30px;
+            background-color: rgb(26, 195, 198);
+            border-radius: 5px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            /* margin-left: 20px; */
+            color: white;
+            font-size: 14px;
+        }
+        p,.zhuye{
+            user-select: text;
+            color: rgb(15, 104, 160);
+        }
+        #zhuye{
+            text-decoration: none;
+            display:i; 
+            text-align:center;
+            width: 100%;
+            bottom: 10px;
+            position:fixed;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <p id="title">Want to puzzle?</p>
+    <div class="frist">
+        <!-- <label for="">分割图片</label> -->
+        <img src="../img/1.jpg" onload="imgON()" id="pic">
+        <br id="one">
+        <div class="action">
+            <label for="">分割参数:</label>
+            <label for="">列:</label>
+            <input type="text" value="24" id="m">
+            <label for="">行:</label>
+            <input type="text" value="10" id="n">
+            <input type="button" value="分割" onClick="makeFragments(true)">
+        </div>
+        <p style="line-height: 5px;">碎图拼图</p>
+        <div class="action">
+            <label for="">参数:</label>
+            <label for="">宽</label>
+            <input type="text" value="50" id="W">
+            <label for="">高</label>
+            <input type="text" value="25" id="H">
+            <label for="">path</label>
+            <input type="text" id="path" value='""C:/Users/jinchuan/Desktop/qiqi/2/""' style="width: 250px;">
+            <input type="button" value="读入" onClick="oneFile()" title="单张图片路径">
+        </div>
+        <div class="layui-form-item action">
+            <div class="layui-input-block">
+                <input type="hidden" id="img_url">
+                <label for="img_file" class="top-l">
+                    选择多张图片
+                    <input type="file" title="选择多张图片" onchange="showImg()" id="img_file" multiple style="display: none;">
+                </label> 
+                <img src="" alt="" id="img_id" style="width: 100px">
+            </div>
+        </div>
+        <p class="hint">
+            You can temporarily drag the image under it
+        </p>
+        <!-- 暂时放置 -->
+        <div id="dumpsters" style="margin-bottom: 10px;"></div>
+        <!-- 碎图,拖动 -->
+        <div id="fragments"></div>
+        
+    </div>
+    <a href="../index.html" class="zhuye" id="zhuye">回到主页</a>
+
+</body>
+
+<script>
+    if (document.getElementById('dumpsters')) {
+        var d = document.getElementById('dumpsters')
+        var ster = '',num=document.getElementById('n').value;
+        for (let j = 0; j < num; j++) {
+            ster += "<td><div style='background-color: 	rgb(26, 195, 198); width: 30px; height: 20px;' class='dumpster' draggable='true' ondragstart='onDragStart(event)' ondragover='onDragOver(event)' ondrop='onDrop(event)'></div></td>"
+        }
+        d.innerHTML = '<table style="border-collapse: collapse; width:60%;" border="0" padding: 5px><tr>' +
+            ster + '</tr></table>'
+    }
+    window.wh = []
+
+
+    function check(maxWidth, maxHeight) {
+        var image={width:window.wh[0],height:window.wh[1]}
+        if (image.width / image.height >= maxWidth / maxHeight) {
+            if (image.width > maxWidth) {
+                tempWidth = maxWidth;
+                tempHeight = (image.height * maxWidth) / image.width;
+            } else {
+                tempWidth = image.width;
+                tempHeight = image.height;
+            }
+        } else {
+            if (image.height > maxHeight) {
+                tempHeight = maxHeight;
+                tempWidth = (image.width * maxHeight) / image.height;
+            } else {
+                tempWidth = image.width;
+                tempHeight = image.height;
+            }
+        }
+
+        console.log(image.width, image.height)
+        console.log('调整后', tempWidth, tempHeight)
+        return [tempWidth, tempHeight]
+    }
+    function smallquas(wid,hei){
+
+    }
+    function oneFile() {
+        var url = document.getElementById('path').value.replaceAll('"', '')
+        const i = new Image()
+        i.src = url
+        const e = document.createElement('img')
+        e.src = url
+
+        e.onload = () => {
+            //
+            const e1 = document.getElementById('pic')
+            document.body.removeChild(e1)
+
+            e.id = "pic"
+            document.body.insertBefore(e,document.getElementById('one'))
+            window.wh = [e.width, e.height]
+            const p = check(100, 100)
+            e.width = p[0]
+            e.height = p[1]
+        }
+        i.id = "pic"
+    }
+    function imgON(){
+        var pic=document.getElementById('pic')
+        window.wh=[pic.width,pic.height]
+        let e2=check(100,100)
+        console.log('e2',e2)
+        pic.width=e2[0]
+        pic.height=e2[1]
+
+    }
+    var typingbefore = document.getElementById("title").innerText;//获取标题内容
+            document.getElementById('title').innerText = "";//将标题内容赋值为空
+            var i = 0;
+            function typetitle(){
+                var typingafter = document.getElementById('title');//获取标题元素
+                if(i <= typingbefore.length){
+                    typingafter.innerHTML = typingbefore.slice(0,i++)+'|';//将标题内容通过slice()方法返回
+                    setTimeout('typetitle()',100);//每100毫秒执行一次
+                }else{
+                    typingafter.innerHTML = typingbefore;//当标题内容全部返回后，去掉最后的‘|’
+                }
+            }
+            typetitle();
+</script>
+
+</html>

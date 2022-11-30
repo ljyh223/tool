@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Tools</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <style>
+        
+        .box3-box-def {
+            width: 225px;
+            height: 48px;
+            float: left;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid white;
+            color: #333;
+        }
+        body{
+            background: white;
+        }
+        .box3-box-def:hover, .box3-box-def:hover a {
+            color: #fff;
+            background: #249ffd;
+            border-color: #249ffd;
+            cursor: pointer;
+        }
+        .nav-tool-list a {
+            background-color: #303851;
+            line-height: 45px;
+            display: block;
+            padding-left: 2px;
+            border-radius: 2px;
+            letter-spacing: 1px;
+            font-weight: 400;
+            text-indent: 10px;
+            background-color: transparent;
+            text-decoration: none;
+            color: white;
+        }
+        .nav-tool-list a:link,
+        .nav-tool-list a:active,
+        .nav-tool-list a:visited {
+            text-decoration: none;
+            cursor: pointer;
+            width: auto;
+            height: auto;
+        }
+        .nav-tool-list a:hover {
+            color:#fff;
+        }
+
+        .nav-tool-title {
+            font-size: 16px;
+            font-weight: bold;
+            height: 40px;
+            line-height: 40px;
+            margin: 10px 0px 10px 5px;
+            clear: both;
+            color: #249ffd;
+        }
+
+        .nav-tool-title span {
+            width: 6px;
+            height: 20px;
+            background: #00bf49;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .box3-box-def{
+            /* background: black;
+            background-color: black; */
+            border-color: black;
+        }
+
+        .reddot:after {
+            content: "";
+            position: absolute;
+            top: 9px;
+            right: 0px;
+            padding: 3px;
+            z-index: 1000;
+            background: #d9534f;
+            border-radius: 50%;
+            font-size: 0;
+            line-height: 0;
+            border: 1px solid #d43f3a;
+        }
+
+        .box3-nav-mobile-img {
+            margin: 0;
+            left: 0px;
+            right: 0px;
+            top: 41px;
+            bottom: 0;
+            position: absolute;
+            padding: 0px 10px 10px 10px;
+            background-color: #fff;
+            border: 1px solid #e8e8e8;
+            display: none;
+        }
+
+        #skin .img-rounded {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            cursor: pointer;
+            margin: 5px 0px 0px 5px;
+        }
+
+        .modal-title span:hover {
+            color: #315efb;
+        } 
+        .deg{
+            float: right;
+            margin-top: 10px;
+        }
+        .box3-box-def>a{
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a class="blog-nav-item" href="#">站点首页</a>
+                <div class="deg"> 
+                    <svg t="1668591119963" class="icon" onclick="dark()"  id="dark" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2424" width="16" height="16"><path d="M593.054 120.217C483.656 148.739 402.91 248.212 402.91 366.546c0 140.582 113.962 254.544 254.544 254.544 118.334 0 217.808-80.746 246.328-190.144C909.17 457.12 912 484.23 912 512c0 220.914-179.086 400-400 400S112 732.914 112 512s179.086-400 400-400c27.77 0 54.88 2.83 81.054 8.217z" fill="#000000" fill-opacity=".65" p-id="2425"></path></svg>
+                </div>
+            </nav>
+
+        </div>
+
+    </div>
+    
+
+    <div class="container">
+
+        <div class="nav-tool-list" style="text-align:left;">
+            <div class="nav-tool-title" id="ljyh"><span></span>LjyhTools</div>
+
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/base64.html">Base64</a>
+            </div>
+
+            <div class="box3-box-def box3-a-pink" style="width: 225px;">
+                <a href="https://c.runoob.com/front-end/854/" style="color: #fff;">正则匹配</a>
+            </div>
+
+
+            <div class="box3-box-def box3-a-pink" style="width: 225px;">
+                <a href="https://jwt.io/" style="color: #fff;">JWT</a>
+            </div>
+
+
+
+
+            <div class="nav-tool-title"><span></span>Encode<a name="CodeConversion"></a></div>
+
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/urlencode.html">URL</a>
+            </div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/base64.html">Base64</a>
+            </div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/unicode.html">Unicode</a>
+            </div>
+
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/system16.html">16</a>
+            </div>
+
+
+
+            <div class="nav-tool-title"><span></span>Crypt<a name="EncryptionDecryption"></a></div>
+            <div class="box3-box-def  box3-a-jade" style="width: 225px;">
+                <a href="html/md5.html" style="color: #fff;">MD5</a>
+            </div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/aes.html">AES</a>
+            </div>
+
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/des.html">DES</a>
+            </div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/tdes.html" >3DES</a>
+            </div>
+
+            <div class="nav-tool-title"><span></span>pwd<a name="passwd"></a></div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/caesar.html">Caesar</a>
+            </div>
+
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/keybord.html">keyboard</a>
+            </div>
+
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/topcode.html">knock</a>
+            </div>
+
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/morse.html">moss</a>
+            </div>
+            <div class="nav-tool-title"><span></span>Editor<a name="Editor"></a></div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/json.html">JSON</a>
+            </div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/rep.html">Rep</a>
+            </div>
+            <div class="box3-box-def" style="width: 225px;">
+                <a href="html/puzzle.html">puzzle</a>
+            </div>
+
+
+            
+
+
+
+            <div class="nav-tool-title"><span></span>常用工具类站点</div>
+
+
+
+            <div class="nav-tool-title"><span></span>国内知名团队</div>
+
+
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+
+
+
+
+    <script src="./js/jquery-1.9.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/scrolltopcontrol.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.0/lib/darkmode-js.min.js"></script> -->
+    <script>
+        document.cookie='dark=1';
+
+        
+
+        // new Darkmode().showWidget();
+
+    </script>
+
+
+
