@@ -54,7 +54,7 @@
         }
         #zhuye{
             text-decoration: none;
-            display:i; 
+            display: inline;
             text-align:center;
             width: 100%;
             bottom: 10px;
@@ -64,11 +64,51 @@
     </style>
 </head>
 
+<script>
+        function check(maxWidth, maxHeight) {
+        var image={width:window.wh[0],height:window.wh[1]}
+        if (image.width / image.height >= maxWidth / maxHeight) {
+            if (image.width > maxWidth) {
+                tempWidth = maxWidth;
+                tempHeight = (image.height * maxWidth) / image.width;
+            } else {
+                tempWidth = image.width;
+                tempHeight = image.height;
+            }
+        } else {
+            if (image.height > maxHeight) {
+                tempHeight = maxHeight;
+                tempWidth = (image.width * maxHeight) / image.height;
+            } else {
+                tempWidth = image.width;
+                tempHeight = image.height;
+            }
+        }
+
+        console.log(image.width, image.height)
+        console.log('调整后', tempWidth, tempHeight)
+        return [tempWidth, tempHeight]
+    }
+    var a=new Image;
+    a.src='https://i.328888.xyz/2022/12/28/UpT9C.jpeg'
+    a.onload=()=>{
+        window.wh=[a.width,a.height]
+        console.log('winwh',window.wh)
+        var p=document.getElementById('pic')
+        let e2=check(100,100)
+        
+        p.src='https://i.328888.xyz/2022/12/28/UpT9C.jpeg'
+        p.width=e2[0]
+        p.height=e2[1]
+    }
+    
+
+</script>
 <body>
     <p id="title">Want to puzzle?</p>
     <div class="frist">
         <!-- <label for="">分割图片</label> -->
-        <img src="../img/1.jpg" onload="imgON()" id="pic">
+        <img src="" onload="imgON()" id="pic">
         <br id="one">
         <div class="action">
             <label for="">分割参数:</label>
@@ -86,7 +126,7 @@
             <label for="">高</label>
             <input type="text" value="25" id="H">
             <label for="">path</label>
-            <input type="text" id="path" value='""C:/Users/jinchuan/Desktop/qiqi/2/""' style="width: 250px;">
+            <input type="text" id="path" value='https://i.328888.xyz/2022/12/28/UpT9C.jpeg' style="width: 250px;">
             <input type="button" value="读入" onClick="oneFile()" title="单张图片路径">
         </div>
         <div class="layui-form-item action">
@@ -125,30 +165,7 @@
     window.wh = []
 
 
-    function check(maxWidth, maxHeight) {
-        var image={width:window.wh[0],height:window.wh[1]}
-        if (image.width / image.height >= maxWidth / maxHeight) {
-            if (image.width > maxWidth) {
-                tempWidth = maxWidth;
-                tempHeight = (image.height * maxWidth) / image.width;
-            } else {
-                tempWidth = image.width;
-                tempHeight = image.height;
-            }
-        } else {
-            if (image.height > maxHeight) {
-                tempHeight = maxHeight;
-                tempWidth = (image.width * maxHeight) / image.height;
-            } else {
-                tempWidth = image.width;
-                tempHeight = image.height;
-            }
-        }
 
-        console.log(image.width, image.height)
-        console.log('调整后', tempWidth, tempHeight)
-        return [tempWidth, tempHeight]
-    }
     function smallquas(wid,hei){
 
     }
@@ -160,12 +177,11 @@
         e.src = url
 
         e.onload = () => {
-            //
-            const e1 = document.getElementById('pic')
-            document.body.removeChild(e1)
-
+            var f=document.body.childNodes[3]
+            var e1 = document.getElementById('pic')
+            f.removeChild(e1)
             e.id = "pic"
-            document.body.insertBefore(e,document.getElementById('one'))
+            f.insertBefore(e,document.getElementById('one'))
             window.wh = [e.width, e.height]
             const p = check(100, 100)
             e.width = p[0]
@@ -175,7 +191,6 @@
     }
     function imgON(){
         var pic=document.getElementById('pic')
-        window.wh=[pic.width,pic.height]
         let e2=check(100,100)
         console.log('e2',e2)
         pic.width=e2[0]
