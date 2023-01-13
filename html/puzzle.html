@@ -63,47 +63,6 @@
         
     </style>
 </head>
-
-<script>
-        function check(maxWidth, maxHeight) {
-        var image={width:window.wh[0],height:window.wh[1]}
-        if (image.width / image.height >= maxWidth / maxHeight) {
-            if (image.width > maxWidth) {
-                tempWidth = maxWidth;
-                tempHeight = (image.height * maxWidth) / image.width;
-            } else {
-                tempWidth = image.width;
-                tempHeight = image.height;
-            }
-        } else {
-            if (image.height > maxHeight) {
-                tempHeight = maxHeight;
-                tempWidth = (image.width * maxHeight) / image.height;
-            } else {
-                tempWidth = image.width;
-                tempHeight = image.height;
-            }
-        }
-
-        console.log(image.width, image.height)
-        console.log('调整后', tempWidth, tempHeight)
-        return [tempWidth, tempHeight]
-    }
-    var a=new Image;
-    a.src='https://i.328888.xyz/2022/12/28/UpT9C.jpeg'
-    a.onload=()=>{
-        window.wh=[a.width,a.height]
-        console.log('winwh',window.wh)
-        var p=document.getElementById('pic')
-        let e2=check(100,100)
-        
-        p.src='https://i.328888.xyz/2022/12/28/UpT9C.jpeg'
-        p.width=e2[0]
-        p.height=e2[1]
-    }
-    
-
-</script>
 <body>
     <p id="title">Want to puzzle?</p>
     <div class="frist">
@@ -151,65 +110,4 @@
     <a href="../index.html" class="zhuye" id="zhuye">回到主页</a>
 
 </body>
-
-<script>
-    if (document.getElementById('dumpsters')) {
-        var d = document.getElementById('dumpsters')
-        var ster = '',num=document.getElementById('n').value;
-        for (let j = 0; j < num; j++) {
-            ster += "<td><div style='background-color: 	rgb(26, 195, 198); width: 30px; height: 20px;' class='dumpster' draggable='true' ondragstart='onDragStart(event)' ondragover='onDragOver(event)' ondrop='onDrop(event)'></div></td>"
-        }
-        d.innerHTML = '<table style="border-collapse: collapse; width:60%;" border="0" padding: 5px><tr>' +
-            ster + '</tr></table>'
-    }
-    window.wh = []
-
-
-
-    function smallquas(wid,hei){
-
-    }
-    function oneFile() {
-        var url = document.getElementById('path').value.replaceAll('"', '')
-        const i = new Image()
-        i.src = url
-        const e = document.createElement('img')
-        e.src = url
-
-        e.onload = () => {
-            var f=document.body.childNodes[3]
-            var e1 = document.getElementById('pic')
-            f.removeChild(e1)
-            e.id = "pic"
-            f.insertBefore(e,document.getElementById('one'))
-            window.wh = [e.width, e.height]
-            const p = check(100, 100)
-            e.width = p[0]
-            e.height = p[1]
-        }
-        i.id = "pic"
-    }
-    function imgON(){
-        var pic=document.getElementById('pic')
-        let e2=check(100,100)
-        console.log('e2',e2)
-        pic.width=e2[0]
-        pic.height=e2[1]
-
-    }
-    var typingbefore = document.getElementById("title").innerText;//获取标题内容
-            document.getElementById('title').innerText = "";//将标题内容赋值为空
-            var i = 0;
-            function typetitle(){
-                var typingafter = document.getElementById('title');//获取标题元素
-                if(i <= typingbefore.length){
-                    typingafter.innerHTML = typingbefore.slice(0,i++)+'|';//将标题内容通过slice()方法返回
-                    setTimeout('typetitle()',100);//每100毫秒执行一次
-                }else{
-                    typingafter.innerHTML = typingbefore;//当标题内容全部返回后，去掉最后的‘|’
-                }
-            }
-            typetitle();
-</script>
-
 </html>
