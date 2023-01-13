@@ -1,26 +1,5 @@
 
-var a=new Image;
-a.src='https://i.328888.xyz/2022/12/28/UpT9C.jpeg'
-a.onload=()=>{
-    window.wh=[a.width,a.height]
-    console.log('winwh',window.wh)
-    var p=document.getElementById('pic')
-    let e2=check(100,100)
-    
-    p.src='https://i.328888.xyz/2022/12/28/UpT9C.jpeg'
-    p.width=e2[0]
-    p.height=e2[1]
-}
-if (document.getElementById('dumpsters')) {
-    var d = document.getElementById('dumpsters')
-    var ster = '',num=document.getElementById('n').value;
-    for (let j = 0; j < num; j++) {
-        ster += "<td><div style='background-color: 	rgb(26, 195, 198); width: 30px; height: 20px;' class='dumpster' draggable='true' ondragstart='onDragStart(event)' ondragover='onDragOver(event)' ondrop='onDrop(event)'></div></td>"
-    }
-    d.innerHTML = '<table style="border-collapse: collapse; width:60%;" border="0" padding: 5px><tr>' +
-        ster + '</tr></table>'
-}
-window.wh = []
+
 
 function check(maxWidth, maxHeight) {
     var image={width:window.wh[0],height:window.wh[1]}
@@ -79,19 +58,7 @@ function imgON(){
     pic.height=e2[1]
 
 }
-var typingbefore = document.getElementById("title").innerText;//获取标题内容
-        document.getElementById('title').innerText = "";//将标题内容赋值为空
-        var i = 0;
-        function typetitle(){
-            var typingafter = document.getElementById('title');//获取标题元素
-            if(i <= typingbefore.length){
-                typingafter.innerHTML = typingbefore.slice(0,i++)+'|';//将标题内容通过slice()方法返回
-                setTimeout('typetitle()',100);//每100毫秒执行一次
-            }else{
-                typingafter.innerHTML = typingbefore;//当标题内容全部返回后，去掉最后的‘|’
-            }
-        }
-        typetitle();
+
 function makeFragments(sim) {
     var m = document.getElementById("m").value;
     var n = document.getElementById("n").value;
